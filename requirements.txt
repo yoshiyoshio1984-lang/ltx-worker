@@ -1,0 +1,12 @@
+runpod
+torch
+diffusers @ git+https://github.com/huggingface/diffusers
+transformers
+accelerate
+safetensors
+Pillow
+sentencepiece
+protobuf
+av
+imageio
+imageio-ffmpeg
