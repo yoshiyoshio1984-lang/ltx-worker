@@ -1,8 +1,17 @@
-runpod
-torch
+# torch / torchvision は必ずセットで同じCUDAビルドに固定する。
+# 片方だけ上げると torchvision::nms が消えてワーカーが起動時に落ちる
+# (2026-11-25 に Flux で発生: torch だけ最新化され torchvision 0.19 が残った)。
+# LTX-2.3 は git main の diffusers が要る。diffusers main は torch>=2.6 を
+# 要求するため、こちらだけ torch 2.6.0 / torchvision 0.21.0 にする。
+# transformers は固定しない (diffusers main が要求する huggingface-hub>=1.32 と
+# 合う版を pip に選ばせる)。
+--extra-index-url https://download.pytorch.org/whl/cu124
+torch==2.6.0+cu124
+torchvision==0.21.0+cu124
 diffusers @ git+https://github.com/huggingface/diffusers
 transformers
 accelerate
+runpod
 safetensors
 Pillow
 sentencepiece
